@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        .subsribe-button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+
+        .subscribed {
+            background-color: rgba(95, 92, 92, 0.432);
+            color: black;
+        }
+
+        .cost-input {
+            font-size: 15px;
+            padding: 10px;
+        }
+
+        .calculate-button {
+            background-color: green;
+            color: white;
+            border: none;
+            font-size: 15px;
+            padding: 11px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <p>Button to simulate subsription</p>
+    <button onclick="
+        subsribe();
+    " class="js-subscribe subsribe-button">Subscribe</button>
+    
+
+    <p>Amazon Shipping Calculator</p>
+    <input placeholder="Cost of order" class="js-cost cost-input" 
+        onkeydown="
+            handleCostKeydown(event);
+    ">
+    <button onclick="
+        calculateTotal();
+    " class="calculate-button">Calculate</button>
+    <p class="js-total-cost"></p>
+
+    <script>
+        function subsribe() {
+            const buttonElem = document.querySelector('.js-subscribe');
+
+            if (buttonElem.innerText === 'Subscribe') {
+                buttonElem.innerHTML = 'Unsubscribe';
+                buttonElem.classList.add('subscribed');
+            } else {
+                buttonElem.innerHTML = 'Subscribe';
+                buttonElem.classList.remove('subscribed');
+            }
+        }
+
+        function calculateTotal() {
+            const inputElem = document.querySelector('.js-cost');
+            let cost = Number(inputElem.value);
+            
+            if (cost < 40) {
+                alert('Shipping cost is 10$');
+                cost += 10;
+            } else {
+                alert('Shipping is free');
+            }
+
+            document.querySelector('.js-total-cost').innerHTML = `Total cost is ${cost}$`;
+        }
+
+        function handleCostKeydown(event) {
+            if (event.key === 'Enter') {
+                calculateTotal();
+            }
+        }
+    </script>
+</body>
+</html>
