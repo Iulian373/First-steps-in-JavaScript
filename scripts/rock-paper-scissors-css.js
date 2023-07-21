@@ -22,6 +22,7 @@ function pickComputerMove () {
 
 let isAutoPlaying = false;
 let intervalID;
+let buttonElem = document.querySelector('.auto-play-button');
 
 function autoPlay() {
     if (!isAutoPlaying) {
@@ -33,7 +34,13 @@ function autoPlay() {
     } else {
         clearInterval(intervalID);
         isAutoPlaying = false;
-    } 
+    }
+
+    if (buttonElem.innerText === 'Auto play') {
+        buttonElem.innerHTML = 'Stop';
+    } else {
+        buttonElem.innerHTML = 'Auto play';
+    }
 }
 
 function playGame (playerChoise) {
