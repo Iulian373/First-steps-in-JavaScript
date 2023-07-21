@@ -20,6 +20,22 @@ function pickComputerMove () {
     return computerChoice;
 }
 
+let isAutoPlaying = false;
+let intervalID;
+
+function autoPlay() {
+    if (!isAutoPlaying) {
+       intervalID = setInterval(function() {
+            const playerMove = pickComputerMove();
+            playGame(playerMove);
+        }, 1500);
+        isAutoPlaying = true;
+    } else {
+        clearInterval(intervalID);
+        isAutoPlaying = false;
+    } 
+}
+
 function playGame (playerChoise) {
     const computerChoice = pickComputerMove();
 
